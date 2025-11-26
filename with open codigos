@@ -20,8 +20,26 @@ print("\n--- Conteúdo atual do arquivo ---")
 
 try:
     # "r" = Read (Ler). Apenas lê o arquivo.
+
     with open(nome_arquivo, "r", encoding="utf-8") as arquivo_leitura:
         conteudo = arquivo_leitura.read()
         print(conteudo)
 except FileNotFoundError:
     print("O arquivo ainda não existe.")
+#--------------------------------------------------------------------------------------------------------------------------
+print("\nExibindo todos os pacientes:")
+lista=[]
+try:
+    with open(nome_do_arquivo,"r",encoding="utf-8") as arquivo:
+        lista_todos_pacientes=arquivo.readlines()
+
+        for paciente in lista_todos_pacientes:
+            nome,idade,altura,cpf=paciente.strip().split(",")
+            dados_paciente=Paciente(nome=nome,idade=int(idade),altura=float(altura),cpf=cpf)
+            lista.append(dados_paciente) 
+
+    for paciente in lista:
+        paciente.exibir_dados()
+        
+except FileNotFoundError:
+    print("Arquivo nao encontrado")
