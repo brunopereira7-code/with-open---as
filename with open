@@ -1,0 +1,27 @@
+# 2. Pedir o dado ao usuário
+texto = input("Digite seu nome: ")
+
+# 3. Definir o nome do arquivo
+nome_arquivo = "exemplo.txt"
+
+# 4. Bloco para SALVAR o arquivo
+# "a" = Append (Adicionar). Ele escreve no final sem apagar o que já existe.
+# "w" = Write (Escrever). Ele apaga tudo e escreve do zero.
+
+# encoding="utf-8" = Garante que acentos funcionem.
+with open(nome_arquivo, "a", encoding="utf-8") as meu_arquivo:
+    meu_arquivo.write(f"{texto}\n") # O \n serve para pular uma linha
+    print("Salvo com sucesso!")
+
+# ---------------------------------------------------------
+# EXTRA: Código para LER o que você acabou de salvar
+# ---------------------------------------------------------
+print("\n--- Conteúdo atual do arquivo ---")
+
+try:
+    # "r" = Read (Ler). Apenas lê o arquivo.
+    with open(nome_arquivo, "r", encoding="utf-8") as arquivo_leitura:
+        conteudo = arquivo_leitura.read()
+        print(conteudo)
+except FileNotFoundError:
+    print("O arquivo ainda não existe.")
